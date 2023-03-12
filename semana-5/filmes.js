@@ -7,7 +7,6 @@ let inputPesquisar = document.querySelector("#input-pesquisar");
 let btnCadastrar = document.getElementById('button-cadastrar');
 let btnBuscar = document.getElementById('button-buscar');
 let btnImagem = document.getElementById('teste');
-let img = document.getElementById('imagem-heart');
 
 
 btnCadastrar.onclick = function () {
@@ -17,12 +16,12 @@ btnCadastrar.onclick = function () {
     let favorito = false;
     let assistido = false;
     let img= 'img/heart-empty.png';
-    
+    let imgAssistido = 'img/olho-fechado.png';
 
     if(temTituloJaCadastrado(titulo)) {
         alert("Já possui um filme com esse mesmo título");
     } else {
-        cadastrarFilme({titulo, duracao, nota, favorito, assistido, img})
+        cadastrarFilme({titulo, duracao, nota, favorito, assistido, img, imgAssistido})
         alert('Filme adicionado com sucesso!!');
     }
     
@@ -91,7 +90,8 @@ function listarFilmes(){
         html += `<fieldset><li>Título: ${filme.titulo}</li> 
                 <li>Nota: ${filme.nota}</li>
                 <li>Duração em minutos: ${filme.duracao}</li>
-                <button onclick="adicionarFilmeFavorito('${filme.titulo}')"><img class="imagem-heart" src="${filme.img}"/></button>
+                <button onclick="adicionarFilmeFavorito('${filme.titulo}')"><img src="${filme.img}"/></button>
+                <button onclick="adicionarFilmeAssistido('${filme.titulo}')"><img src="${filme.imgAssistido}"/></button>
                 </fieldset>`;
     });
     document.querySelector("#lista-filmes").innerHTML = html;
@@ -120,6 +120,22 @@ function adicionarFilmeFavorito(tituloFilme){
     listarFilmes();
 }
 
+function adicionarFilmeAssistido(tituloFilme){
+
+    filmes.map(filme => {
+        if(tituloFilme === filme.titulo) {
+            if (filme.assistido){
+                filme.imgAssistido = "img/olho-fechado.png"
+                filme.assistido = false
+            } else {
+                filme.imgAssistido = "img/olho.png"
+                filme.assistido = true;
+            }
+        }
+    });
+    localStorage.setItem("filmes", JSON.stringify(filmes));  
+    listarFilmes();
+}
   
 
   
