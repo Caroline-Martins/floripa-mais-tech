@@ -11,19 +11,18 @@ let img = document.getElementById('imagem-heart');
 
 
 btnCadastrar.onclick = function () {
-    debugger;
     let titulo = inputNome.value;
     let duracao = inputDuracao.value;
     let nota = inputNota.value; 
     let favorito = false;
     let assistido = false;
-    let imgCoracaoVazio = 'img/heart-empty.png';
-    let imgCoracaoCheio = 'img/heart.png';
+    let img= 'img/heart-empty.png';
+    
 
     if(temTituloJaCadastrado(titulo)) {
         alert("Já possui um filme com esse mesmo título");
     } else {
-        cadastrarFilme({titulo, duracao, nota, favorito, assistido, imgCoracaoVazio, imgCoracaoCheio})
+        cadastrarFilme({titulo, duracao, nota, favorito, assistido, img})
         alert('Filme adicionado com sucesso!!');
     }
     
@@ -86,15 +85,13 @@ function limparCampos() {
 }
 
 function listarFilmes(){
-    debugger
     filmes = JSON.parse(localStorage.getItem("filmes")) || [];
     let html = "";
     filmes.forEach(filme => {
         html += `<fieldset><li>Título: ${filme.titulo}</li> 
                 <li>Nota: ${filme.nota}</li>
                 <li>Duração em minutos: ${filme.duracao}</li>
-                <img class="imagem-heart" src="${filme.imgCoracaoVazio}"/>
-                <img class="imagem-heart" src="${filme.imgCoracaoCheio}"/>
+                <button onclick="adicionarFilmeFavorito('${filme.titulo}')"><img class="imagem-heart" src="${filme.img}"/></button>
                 </fieldset>`;
     });
     document.querySelector("#lista-filmes").innerHTML = html;
@@ -102,6 +99,26 @@ function listarFilmes(){
 listarFilmes();
 
 
+function adicionarFilmeFavorito(tituloFilme){
+    let quantidadeFilmesFavoritos = filmes.filter(f => f.favorito).length;
+
+    filmes.map(filme => {
+        if(tituloFilme === filme.titulo) {
+            if (filme.favorito){
+                filme.img = "img/heart-empty.png"
+                filme.favorito = false
+            } 
+            else if (quantidadeFilmesFavoritos >= 3){
+                alert("Já existem três filmes favoritos");
+            } else {
+                filme.img = "img/heart.png"
+                filme.favorito = true;
+            }
+        }
+    });
+    localStorage.setItem("filmes", JSON.stringify(filmes));  
+    listarFilmes();
+}
 
   
 
