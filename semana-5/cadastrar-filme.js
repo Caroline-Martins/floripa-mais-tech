@@ -17,11 +17,13 @@ btnCadastrar.onclick = function () {
     let nota = inputNota.value; 
     let favorito = false;
     let assistido = false;
-    let heart = 'img/heart-empty.png';
+    let imgCoracaoVazio = 'img/heart-empty.png';
+    let imgCoracaoCheio = 'img/heart.png';
+
     if(temTituloJaCadastrado(titulo)) {
         alert("Já possui um filme com esse mesmo título");
     } else {
-        cadastrarFilme({titulo, duracao, nota, favorito, assistido, heart})
+        cadastrarFilme({titulo, duracao, nota, favorito, assistido, imgCoracaoVazio, imgCoracaoCheio})
         alert('Filme adicionado com sucesso!!');
     }
     
@@ -62,10 +64,6 @@ btnBuscar.onclick = function () {
     }
 };
 
-btnImagem.onclick = function () {  
-     debugger
-     img.src = "img/heart.png";
-}
 
 
 function temTituloJaCadastrado(titulo) {
@@ -92,10 +90,11 @@ function listarFilmes(){
     filmes = JSON.parse(localStorage.getItem("filmes")) || [];
     let html = "";
     filmes.forEach(filme => {
-        html += `<fieldset><li>${filme.titulo}</li> 
-                <li>${filme.nota}</li>
-                <li>${filme.duracao}</li>
-                <a id="teste"><img id="imagem-heart" src="${filme.heart}"/></a>
+        html += `<fieldset><li>Título: ${filme.titulo}</li> 
+                <li>Nota: ${filme.nota}</li>
+                <li>Duração em minutos: ${filme.duracao}</li>
+                <img class="imagem-heart" src="${filme.imgCoracaoVazio}"/>
+                <img class="imagem-heart" src="${filme.imgCoracaoCheio}"/>
                 </fieldset>`;
     });
     document.querySelector("#lista-filmes").innerHTML = html;
