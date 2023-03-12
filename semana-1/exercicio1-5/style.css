@@ -1,0 +1,26 @@
+h1 {
+    color: deeppink;
+} 
+img {
+    height: 100px; 
+    width: 100px;
+    border-radius: 50px;
+    box-shadow: 15px 0px 20px pink;
+
+} 
+@font-face {
+    font-family: fonte-caroline;
+    src: url(./Sofia_Sans_Extra_Condensed/SofiaSansExtraCondensed-Italic-VariableFont_wght.ttf)
+  }
+  
+body {
+    font-family: fonte-caroline;
+    font-size: 20pt;
+    background-color: grey;
+}
+h2 {
+    color: deeppink;
+} 
+li,p {
+    color: white;
+}
