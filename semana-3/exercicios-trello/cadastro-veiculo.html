@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Veículo</title>
+</head>
+<body>
+    <h2>Cadastro Veículo:</h2>
+    <a href="index.html">Voltar</a>
+
+    <form action="javascript:cadastrarVeiculo()">
+        <br>
+        <fieldset>
+            <label for="modelo">Selecione um modelo:</label>
+            <select name="modelo" id="modelo"></select>
+        </fieldset> 
+
+        <fieldset>
+            <label for="cor">Digite uma cor:</label>
+            <input type="text" id="cor">
+        </fieldset>
+
+        <fieldset>
+            <label for="km">Digite os km:</label>
+            <input type="text" id="km">
+        </fieldset>
+
+        <fieldset>
+            <label for="valor">Digite o valor:</label>
+            <input type="number" id="valor">
+        </fieldset>
+        <fieldset>
+            <label for="imagem">Selecione uma imagem:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/png, image/jpeg">
+        </fieldset><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="veiculo-cadastrado"></div>
+    <script src="script-veiculo.js"></script>  
+</body>
+</html>

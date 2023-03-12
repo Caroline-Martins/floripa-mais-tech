@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro modelo</title>
+</head>
+<body>
+    <a href="index.html">Voltar</a> 
+    <h2>Cadrastro de modelo:</h2>
+    <form action="javascript:cadastrarModelo()">
+        <label for="modelo">Nome do modelo:</label>
+        <input id="modelo" type="text">
+
+        <label for="marcas">Marcas:</label>
+        <select name="marcas" id="marcas"></select>
+
+        <button type="submit">Cadastrar</button>
+    </form>    
+    <div id="modelo-cadastrado"></div> 
+    <script src="script-modelo.js"></script>
+</body> 
+</html>
