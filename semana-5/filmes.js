@@ -10,8 +10,9 @@ let btnImagem = document.getElementById('teste');
 
 
 btnCadastrar.onclick = function () {
+    debugger
     let titulo = inputNome.value;
-    let duracao = inputDuracao.value;
+    let duracao = Number(inputDuracao.value);
     let nota = inputNota.value; 
     let favorito = false;
     let assistido = false;
@@ -134,9 +135,18 @@ function adicionarFilmeAssistido(tituloFilme){
         }
     });
     localStorage.setItem("filmes", JSON.stringify(filmes));  
-    listarFilmes();
+    listarFilmes(); 
+    somarTempoFilmesAssistidos(); 
 }
   
+function somarTempoFilmesAssistidos() {
+    let minutosTotais = filmes
+        .filter(filme => filme.assistido)
+        .reduce((acumulador , filme) =>  acumulador + filme.duracao, 0);
+    let html = `<h3>Minutos totais assistidos: ${minutosTotais}</h3>`;
+    document.querySelector("#minutos-assistidos").innerHTML = html;
+}
 
+somarTempoFilmesAssistidos();
   
    
